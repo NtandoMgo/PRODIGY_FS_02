@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class EmployeeService {
     @Autowired
@@ -20,16 +18,22 @@ public class EmployeeService {
         return emplRepository.save(anEmpl);
     }
 
-    public Employee updateEmployee (Long id, Employee anEmpl) {
-        Optional<Employee> existingEmpl = emplRepository.findById(id);
-        if (existingEmpl.isPresent()) {
-            anEmpl.setId(id);
-            return emplRepository.save(anEmpl);
-        }
-        return null;    //case where employee does not exist
+    public Employee updateEmployee (Long id, Employee updatedEmployee) {
+        return emplRepository.findById(id)
+            .map(employee -> {
+                employee.setName(updatedEmployee.getName());
+                employee.setEmail(updatedEmployee.getEmail());
+                employee.setRole(updatedEmployee.getRole());
+                return emplRepository.save(employee);
+            })
+            .orElseThrow(() -> new RuntimeException("Employee not found (u)"));
     }
 
     public void deleteEmployee(Long id) {
-        emplRepository.deleteById(id);
+        if (emplRepository.existsById(id)) {
+            emplRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Employee not found (d)");
+        }
     }
 }

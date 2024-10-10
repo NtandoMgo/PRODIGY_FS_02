@@ -3,6 +3,7 @@ package com.example.employee_management;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,12 +30,13 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee anEmployee) {
-        return emplService.updateEmployee(id, anEmployee);
+    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee anUpdatedEmployee) {
+        return emplService.updateEmployee(id, anUpdatedEmployee);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteEmployee(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
         emplService.deleteEmployee(id);
+        return ResponseEntity.noContent().build();
     }
 }
