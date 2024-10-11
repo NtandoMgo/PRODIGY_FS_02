@@ -1,4 +1,4 @@
-package com.example.employee_management;
+package com.example.employee_management.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +19,9 @@ public class Employee {
 
     private String role;
 
+    // Constructors
+    public Employee() {
+    }
     public Employee(String name, String email, String role) {
         this.name = name;
         this.email = email;

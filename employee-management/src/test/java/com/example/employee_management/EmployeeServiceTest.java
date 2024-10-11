@@ -18,6 +18,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.example.employee_management.model.Employee;
+import com.example.employee_management.repository.EmployeeRepository;
+import com.example.employee_management.service.EmployeeService;
+
 class EmployeeServiceTest {
     @InjectMocks
     private EmployeeService employeeService;
