@@ -1,36 +1,33 @@
 import React, { useState } from 'react';
-import axios from '../services/axiosConfig.js';
+import axios from '../services/axiosConfig.js'
 import { useNavigate } from 'react-router-dom';
 
-function Login({ setIsLoggedIn }) {
+function Register() {
     const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
-    const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/auth/login', { 
-                username, 
-                password 
-            });
+            const response = await axios.post('/auth/register', { username, email, password });
             setMessage(response.data);
-            localStorage.setItem('token', response.data.token); // Assuming the response contains a token
-            navigate('/employees'); // Use navigate to redirect
+            useNavigate('/login')
         } catch (error) {
-            setMessage('Invalid credentials. Please try again.');
+            setMessage('Registration failed. Please try again.');
         }
     };
 
     return (
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleRegister}>
             <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" required />
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
-            <button type="submit">Login</button>
+            <button type="submit">Register</button>
             <p>{message}</p>
         </form>
     );
 }
 
-export default Login;
+export default Register;
