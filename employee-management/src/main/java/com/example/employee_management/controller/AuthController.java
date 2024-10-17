@@ -1,6 +1,7 @@
 package com.example.employee_management.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -41,15 +42,18 @@ public class AuthController {
     //     return ResponseEntity.status(401).body("Invalid credentials");
     // }
 
-    @PostMapping("/login")
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
 public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
     String usernameOrEmail = loginRequest.getUsername();
     String password = loginRequest.getPassword();
     
+    System.out.println("Received login attempt for: " + usernameOrEmail);
+    
     if (userService.loginUser(usernameOrEmail, password).isPresent()) {
-        // Here, you would typically generate a JWT and return it
         return ResponseEntity.ok("Login successful");
     }
+    
+    System.out.println("Invalid login attempt for: " + usernameOrEmail);
     return ResponseEntity.status(401).body("Invalid credentials");
 }
 }

@@ -1,36 +1,43 @@
 import React, { useState } from 'react';
-import axios from '../services/axiosConfig.js';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../services/AuthService';
 
-function Login({ setIsLoggedIn }) {
+const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/auth/login', { 
-                username, 
-                password 
-            });
-            setMessage(response.data);
-            localStorage.setItem('token', response.data.token); // Assuming the response contains a token
-            navigate('/employees'); // Use navigate to redirect
+            console.log({ username, password }); // Log the payload for debugging
+            const user = await login(username, password); // Pass as separate arguments
+            localStorage.setItem('user', JSON.stringify(user));
+            navigate('/employees');
         } catch (error) {
-            setMessage('Invalid credentials. Please try again.');
+            console.error('Login failed:', error);
         }
     };
 
     return (
-        <form onSubmit={handleLogin}>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" required />
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
+        <form onSubmit={handleSubmit}>
+            <input
+                type="text"
+                placeholder="Username or Email"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+            />
+            <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+            />
             <button type="submit">Login</button>
-            <p>{message}</p>
         </form>
     );
-}
+};
 
 export default Login;

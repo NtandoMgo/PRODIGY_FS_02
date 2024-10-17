@@ -6,6 +6,7 @@ import EmployeeList from './components/EmployeeList';
 import Login from './components/Login';
 import Register from './components/Register';
 import Navbar from './components/Navbar';
+import Logout from './components/Logout';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/employees" element={<EmployeeList />} />
                 <Route path="/employee-form" element={<EmployeeForm />} />
+                <Route path="/logout" element={<Logout/>} />
             </Routes>
         </>
     );
