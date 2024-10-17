@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EmployeeService from "../services/EmployeeService";
+import '../styles/EmployeeList.css'
 
 const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
