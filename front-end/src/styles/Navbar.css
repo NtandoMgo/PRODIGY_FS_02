@@ -1,0 +1,98 @@
+nav {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    background-color: #007bff; 
+    padding: 1rem 2rem; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.logo {
+    color: white; 
+    font-size: 1.8rem; 
+    font-weight: bold; 
+}
+
+.nav-buttons {
+    list-style-type: none;
+    display: flex;
+    justify-content: center; 
+    gap: 1rem;
+}
+
+.nav-buttons li {
+    display: inline;
+}
+
+nav button {
+    color: white;
+    background-color: #0056b3; 
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in, transform 0.2s ease; 
+}
+
+nav button:hover {
+    background-color: #004494; 
+    transform: scale(1.05); 
+}
+
+.help-btn {
+    background-color: #dc3545; 
+}
+
+.help-btn:hover {
+    background-color: #c82333; 
+}
+
+.help-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
+    z-index: 1000;
+    animation: fadeIn 0.3s; 
+}
+
+.help-content {
+    text-align: center; 
+}
+
+.help-content h4 {
+    margin-bottom: 15px;
+}
+
+.help-content p {
+    margin: 5px 0;
+}
+
+.close-btn {
+    margin-top: 15px; 
+    padding: 8px 12px;
+    background-color: #dc3545; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in;
+}
+
+.close-btn:hover {
+    background-color: #c82333; 
+}
+
+/* Animation for help popup */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
