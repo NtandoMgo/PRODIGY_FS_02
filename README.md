@@ -1,7 +1,3 @@
-Here's a structured README template for your employee management system. This template includes sections that will help present your project clearly and professionally:
-
----
-
 # Employee Management System
 
 A web-based employee management system that allows administrators to perform CRUD (Create, Read, Update, Delete) operations on employee records. The system includes authentication features and is built using React Vite for the frontend, Java for the backend, and PostgreSQL for the database.
@@ -110,7 +106,3 @@ A web-based employee management system that allows administrators to perform CRU
 ## License
 
 This project is licensed under the MIT License.
-
----
-
-Feel free to modify or expand any section. Adding screenshots, badges, or links to further documentation can also enhance the presentation. Let me know if you'd like any more details included!
